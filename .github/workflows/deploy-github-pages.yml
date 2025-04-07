@@ -38,7 +38,7 @@ jobs:
         run: npm ci
 
       - name: Build Hugo site
-        run: hugo --minify --baseURL="https://wroge.github.io/sqlt-docs/"
+        run: hugo --minify --baseURL="https://wroge.github.io/"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
