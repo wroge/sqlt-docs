@@ -1,5 +1,4 @@
 baseURL: "https://wroge.github.io/sqlt-docs/"
-canonifyURLs: true
 title: "{{ sqlt }}"
 
 # cSpell:ignore goldmark github hugo readingtime docsy subdir lastmod pygments linenos catmullrom norsk gu
