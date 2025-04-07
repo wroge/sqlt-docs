@@ -37,9 +37,6 @@ jobs:
       - name: Install NPM dependencies
         run: npm ci
 
-      - name: Debug baseURL
-        run: hugo config | grep baseURL
-
       - name: Build Hugo site
         run: hugo --minify --baseURL="https://wroge.github.io/sqlt-docs/"
 
