@@ -3,10 +3,13 @@ title: jackc/pgx
 date: 2025-04-06
 description: >
   pgx is a pure Go driver and toolkit for PostgreSQL.
-categories: [Driver, Postgres]
+drivers: [jackc/pgx]
+scanners: [ScanInt, ScanString]
+executors: [First]
+configs: [Dollar, NoExpirationCache]
 ---
 
-```go
+{{< code language="go" title="Example" >}}
 import (
 	"context"
 	"database/sql"
@@ -24,9 +27,9 @@ type Query struct {
   Title string
 }
 
-var queryBook = sqlt.First[Query, Book](sqlt.Dollar, sqlt.Parse(`
+var queryBook = sqlt.First[Query, Book](sqlt.Dollar, sqlt.NoExpirationCache(100), sqlt.Parse(`
   SELECT
-    id        {{ ScanInt64 "ID" }}
+    id        {{ ScanInt "ID" }}
     , title   {{ ScanString "Title" }}
   FROM books
   WHERE title = {{ .Title }}
@@ -41,4 +44,4 @@ book, err := queryBook.Exec(ctx, db, Query{Title: "Moby-Dick"})
 if err != nil {
   panic(err)
 }
-```
+{{< /code >}}

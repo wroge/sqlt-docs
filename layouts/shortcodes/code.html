@@ -1,0 +1,13 @@
+{{ $language := .Get "language" }}
+{{ $source := .Get "source" }}
+{{ $title := .Get "title" }}
+{{ $options := .Get "options" }}
+
+<div class="highlight-wrapper">
+        <div class="highlight-title">{{ if $title }}{{ $title }}{{ else }}{{ $source }}{{ end }}</div>
+        {{ if $source }}
+        {{ highlight (trim ($source | readFile) "\n\r") $language $options }}
+        {{ else }}
+        {{ highlight (trim .Inner "\n\r") $language $options }}
+        {{ end }}
+</div>

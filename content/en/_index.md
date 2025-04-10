@@ -3,8 +3,8 @@ title: sqlt
 ---
 
 {{< blocks/cover title="{{ sqlt }}" image_anchor="top" height="full" >}}
-<a class="btn btn-lg btn-primary me-3 mb-4" href="docs/">
-  Learn More <i class="fas fa-arrow-alt-circle-right ms-2"></i>
+<a class="btn btn-lg btn-primary me-3 mb-4" href="tour/">
+  Start Tour <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
 <p class="lead mt-5">A Go Template-Based SQL Builder and Struct Mapper</p>
 {{< blocks/link-down color="info" >}}
@@ -12,7 +12,7 @@ title: sqlt
 
 
 {{% blocks/lead color="primary" %}}
-Infos
+Documentation
 {{% /blocks/lead %}}
 
 
@@ -40,12 +40,12 @@ Links
 
 {{% blocks/section type="row" %}}
 
-{{% blocks/feature icon="fab fa-github" title="sqlt"
+{{% blocks/feature icon="fab fa-github" title="github"
     url="https://github.com/wroge/sqlt" %}}
 Github
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fab fa-golang" title="sqlt"
+{{% blocks/feature icon="fab fa-golang" title="go-doc"
     url="https://pkg.go.dev/github.com/wroge/sqlt" %}}
 Go Doc
 {{% /blocks/feature %}}

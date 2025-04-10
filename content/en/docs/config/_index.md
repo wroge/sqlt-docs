@@ -2,9 +2,13 @@
 title: Config
 description: Config options.
 weight: 2
+drivers: []
+scanners: [ScanInt, ScanString]
+executors: [First]
+configs: [Dollar, Masterminds/sprig, Log]
 ---
 
-```go
+{{< code language="go" title="Example" >}}
 import "github.com/Masterminds/sprig/v3"
 
 // sqlt.Config implements sqlt.Option
@@ -21,9 +25,9 @@ config := sqlt.Config{
 // sqlt.First(opts ...sqlt.Option)
 var queryBook = sqlt.First[Query, Book](config, sqlt.NoExpirationCache(100), sqlt.Parse(`
   SELECT
-    id        {{ ScanInt64 "ID" }}
+    id        {{ ScanInt "ID" }}
     , title   {{ ScanString "Title" }}
   FROM books
   WHERE title = {{ .Title }}
 `))
-```
+{{< /code >}}

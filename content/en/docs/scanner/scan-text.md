@@ -3,15 +3,18 @@ title: ScanText
 date: 2025-04-06
 description: >
   ScanText can be used to scan types that implements encoding.TextUnmarshaler.
-categories: [Scanner]
 weight: 8
+drivers: []
+scanners: [ScanInt, ScanText]
+executors: [First]
+configs: []
 ---
 
 {{% pageinfo %}}
 {{ ScanText Field }}
 {{% /pageinfo %}}
 
-```go
+{{< code language="go" title="Example" >}}
 type Book struct {
   ID    int64
   Sales big.Int
@@ -19,9 +22,9 @@ type Book struct {
 
 var queryBook = sqlt.First[string, Book](sqlt.Parse(`
   SELECT
-    id         {{ ScanInt64 "ID" }}
+    id         {{ ScanInt "ID" }}
     , sales    {{ ScanText "Sales" }}
   FROM books
   WHERE title = {{ . }}
 `))
-```
+{{< /code >}}

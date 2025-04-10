@@ -3,7 +3,10 @@ title: ScanJSON
 date: 2025-04-06
 description: >
   ScanJSON can be used to scan any type as JSON.
-categories: [Scanner]
+drivers: []
+scanners: [ScanInt, ScanJSON]
+executors: [One]
+configs: []
 weight: 6
 ---
 
@@ -11,19 +14,19 @@ weight: 6
 {{ ScanJSON Field }}
 {{% /pageinfo %}}
 
-```go
+{{< code language="go" title="Example" >}}
 type Book struct {
   ID      int64
   Authors []string
 }
 
-var queryBook = sqlt.First[string, Book](sqlt.Parse(`
+var queryBook = sqlt.One[string, Book](sqlt.Parse(`
   SELECT
-    books.id                 {{ ScanInt64 "ID" }}
+    books.id                 {{ ScanInt "ID" }}
     , JSON_AGG(authors.name) {{ ScanJSON "Authors" }}
   FROM books
   LEFT JOIN book_authors ON books.id = book_authors.book_id
   LEFT JOIN authors ON authors.id = book_authors.author_id
   WHERE books.title = {{ . }}
 `))
-```
+{{< /code >}}

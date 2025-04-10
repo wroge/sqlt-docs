@@ -3,15 +3,19 @@ title: ScanStringTime
 date: 2025-04-06
 description: >
   ScanStringTime can be used to parse string values to time.Time.
-categories: [Scanner]
+weight: 10
+drivers: []
+scanners: [ScanStringTime]
+executors: [One]
+configs: []
 ---
 
 {{% pageinfo %}}
 {{ ScanStringTime Field Layout Location }}
 {{% /pageinfo %}}
 
-```go
-var queryDate = sqlt.All[string, time.Time](sqlt.Parse(`
+{{< code language="go" title="Example" >}}
+var queryDate = sqlt.One[string, time.Time](sqlt.Parse(`
   SELECT
     '2025-04-06' {{ ScanStringTime "" "DateOnly" "UTC" }}
   FROM books
@@ -40,4 +44,4 @@ var layoutMap = map[string]string{
 	"StampMicro":  time.StampMicro,
 	"StampNano":   time.StampNano,
 }
-```
+{{< /code >}}

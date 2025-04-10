@@ -3,7 +3,10 @@ title: ScanBool
 date: 2025-04-06
 description: >
   ScanBool can be used to scan bool and *bool.
-categories: [Scanner]
+drivers: []
+scanners: [ScanBool]
+executors: [First]
+configs: []
 weight: 4
 ---
 
@@ -11,7 +14,7 @@ weight: 4
 {{ ScanBool Field }}
 {{% /pageinfo %}}
 
-```go
+{{< code language="go" title="Example" >}}
 type Favorite bool
 
 type Book struct {
@@ -30,4 +33,4 @@ var queryBook = sqlt.First[Query, Book](sqlt.Parse(`
   FROM books
   WHERE title = {{ .Title }}
 `))
-```
+{{< /code >}}

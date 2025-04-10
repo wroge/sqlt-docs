@@ -1,19 +1,22 @@
 ---
-title: ScanUint64
+title: ScanUint
 date: 2025-04-06
 description: >
-  ScanUint64 can be used to scan uint64 and *uint64.
-categories: [Scanner]
+  ScanUint can be used to scan uints and pointer to uints.
 weight: 3
+drivers: []
+scanners: [Scan, ScanUint]
+executors: [First]
+configs: []
 ---
 
 {{% pageinfo %}}
-{{ ScanUint64 Field }}
+{{ ScanUint Field }}
 {{% /pageinfo %}}
 
-```go
+{{< code language="go" title="Example" >}}
 type Book struct {
-  ID      uint64
+  ID      uint
   Pages   *uint64
   Edition sql.Null[uint64]
 }
@@ -24,10 +27,10 @@ type Query struct {
 
 var queryBook = sqlt.First[Query, Book](sqlt.Parse(`
   SELECT
-    id          {{ ScanUint64 "ID" }}
-    , pages     {{ ScanUint64 "Pages" }}
+    id          {{ ScanUint "ID" }}
+    , pages     {{ ScanUint "Pages" }}
     , edition   {{ Scan "Edition" }}
   FROM books
   WHERE title = {{ .Title }}
 `))
-```
+{{< /code >}}

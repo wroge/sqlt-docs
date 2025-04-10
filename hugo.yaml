@@ -19,13 +19,15 @@ enableGitInfo: false
 # disableKinds: [taxonomy, taxonomyTerm]
 
 # You can add your own taxonomies
-# taxonomies:
-#   tag: tags
-#   category: categories
+taxonomies:
+  driver: drivers
+  scanner: scanners
+  executor: executors
+  config: configs
 
 # Highlighting config
 pygmentsCodeFences: true
-pygmentsUseClasses: false
+pygmentsUseClasses: true
 # Use the new Chroma Go highlighter in Hugo.
 pygmentsUseClassic: false
 # pygmentsOptions: "linenos=table"
@@ -51,7 +53,7 @@ markup:
       unsafe: true
   highlight:
     # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-    style: tango
+    noClasses: false
     # Uncomment if you want your chosen highlight style used for code blocks without a specified language
     # guessSyntax: true
 
@@ -123,6 +125,7 @@ params:
 
   # User interface configuration
   ui:
+    showLightDarkModeMenu: true
     # Set to true to disable breadcrumb navigation.
     breadcrumb_disable: false
     # Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top navbar
@@ -172,7 +175,11 @@ params:
       - name: sqlt
         url: https://github.com/wroge/sqlt
         icon: fab fa-github
-        desc: sqlt
+        desc: github
+      - name: sqlt
+        url: https://pkg.go.dev/github.com/wroge/sqlt
+        icon: fab fa-golang
+        desc: go-doc
       # - name: Slack
       #   url: https://example.org/slack
       #   icon: fab fa-slack

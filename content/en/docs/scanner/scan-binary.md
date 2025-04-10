@@ -3,7 +3,10 @@ title: ScanBinary
 date: 2025-04-06
 description: >
   ScanBinary can be used to scan types that implements encoding.BinaryUnmarshaler.
-categories: [Scanner]
+drivers: []
+scanners: [Scan, ScanBinary]
+executors: [First]
+configs: []
 weight: 7
 ---
 
@@ -11,7 +14,7 @@ weight: 7
 {{ ScanBinary Field }}
 {{% /pageinfo %}}
 
-```go
+{{< code language="go" title="Example" >}}
 type Book struct {
   ID        int64
   AmazonLink url.URL
@@ -19,9 +22,9 @@ type Book struct {
 
 var queryBook = sqlt.First[string, Book](sqlt.Parse(`
   SELECT
-    books.id            {{ ScanInt64 "ID" }}
+    books.id            {{ Scan "ID" }}
     , books.amazon_link {{ ScanBinary "AmazonLink" }}
   FROM books
   WHERE title = {{ . }}
 `))
-```
+{{< /code >}}

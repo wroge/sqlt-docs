@@ -1,19 +1,22 @@
 ---
-title: ScanInt64
+title: ScanInt
 date: 2025-04-06
 description: >
-  ScanInt64 can be used to scan int64 and *int64.
-categories: [Scanner]
+  ScanInt can be used to scan ints and pointer to ints.
+drivers: []
+scanners: [Scan, ScanInt]
+executors: [First]
+configs: []
 weight: 2
 ---
 
 {{% pageinfo %}}
-{{ ScanInt64 Field }}
+{{ ScanInt Field }}
 {{% /pageinfo %}}
 
-```go
+{{< code language="go" title="Example" >}}
 type Book struct {
-  ID      int64
+  ID      int
   Pages   *int64
   Edition sql.Null[int64]
 }
@@ -24,10 +27,10 @@ type Query struct {
 
 var queryBook = sqlt.First[Query, Book](sqlt.Parse(`
   SELECT
-    id          {{ ScanInt64 "ID" }}
-    , pages     {{ ScanInt64 "Pages" }}
+    id          {{ ScanInt "ID" }}
+    , pages     {{ ScanInt "Pages" }}
     , edition   {{ Scan "Edition" }}
   FROM books
   WHERE title = {{ .Title }}
 `))
-```
+{{< /code >}}

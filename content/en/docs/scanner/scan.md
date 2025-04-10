@@ -3,15 +3,18 @@ title: Scan
 date: 2025-04-06
 description: >
   Scan can be used to scan sql.Scanner, string, int, uint, float or time.Time types.
-categories: [Scanner]
 weight: 1
+drivers: []
+scanners: [Scan]
+executors: [One]
+configs: []
 ---
 
 {{% pageinfo %}}
 {{ Scan Field }}
 {{% /pageinfo %}}
 
-```go
+{{< code language="go" title="Example" >}}
 type Book struct {
   ID        int64
   Title     string 
@@ -32,4 +35,4 @@ var queryBook = sqlt.One[int64, Book](sqlt.Parse(`
   FROM books
   WHERE id = {{ . }}
 `))
-```
+{{< /code >}}

@@ -3,15 +3,18 @@ title: ScanString
 date: 2025-04-06
 description: >
   ScanString can be used to scan string and *string.
-categories: [Scanner]
 weight: 1
+drivers: []
+scanners: [Scan, ScanString]
+executors: [One]
+configs: []
 ---
 
 {{% pageinfo %}}
 {{ ScanString Field }}
 {{% /pageinfo %}}
 
-```go
+{{< code language="go" title="Example" >}}
 type Book struct {
   Author   string
   CoAuthor *string
@@ -26,4 +29,4 @@ var queryBook = sqlt.One[int64, Book](sqlt.Parse(`
   FROM books
   WHERE id = {{ . }}
 `))
-```
+{{< /code >}}
