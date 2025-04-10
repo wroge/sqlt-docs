@@ -6,7 +6,7 @@ description: >
 drivers: [jackc/pgx]
 scanners: [ScanInt, ScanString]
 executors: [First]
-configs: [Dollar, NoExpirationCache]
+configs: [Dollar, NoExpirationCache, Parse]
 ---
 
 {{< code language="go" title="Example" >}}

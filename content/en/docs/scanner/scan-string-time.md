@@ -7,7 +7,7 @@ weight: 10
 drivers: []
 scanners: [ScanStringTime]
 executors: [One]
-configs: []
+configs: [Parse]
 ---
 
 {{% pageinfo %}}

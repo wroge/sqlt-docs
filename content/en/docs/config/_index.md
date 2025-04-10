@@ -5,7 +5,7 @@ weight: 2
 drivers: []
 scanners: [ScanInt, ScanString]
 executors: [First]
-configs: [Dollar, Masterminds/sprig, Log]
+configs: [Dollar, Masterminds/sprig, Log, NoExpirationCache, Parse]
 ---
 
 {{< code language="go" title="Example" >}}

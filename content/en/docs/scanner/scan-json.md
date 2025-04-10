@@ -6,8 +6,9 @@ description: >
 drivers: []
 scanners: [ScanInt, ScanJSON]
 executors: [One]
-configs: []
+configs: [Parse]
 weight: 6
+version: v0.3.8
 ---
 
 {{% pageinfo %}}

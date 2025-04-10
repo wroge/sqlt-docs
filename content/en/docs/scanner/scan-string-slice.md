@@ -7,7 +7,7 @@ weight: 9
 drivers: []
 scanners: [ScanStringSlice]
 executors: [First]
-configs: []
+configs: [Parse]
 ---
 
 {{% pageinfo %}}

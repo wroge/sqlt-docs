@@ -7,7 +7,7 @@ weight: 3
 drivers: []
 scanners: [Scan, ScanFloat]
 executors: [All]
-configs: []
+configs: [Parse]
 ---
 
 {{% pageinfo %}}

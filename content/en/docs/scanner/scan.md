@@ -7,7 +7,7 @@ weight: 1
 drivers: []
 scanners: [Scan]
 executors: [One]
-configs: []
+configs: [Parse]
 ---
 
 {{% pageinfo %}}

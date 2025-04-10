@@ -6,7 +6,7 @@ description: >
 drivers: [modernc.org/sqlite]
 scanners: [ScanInt, ScanString]
 executors: [One]
-configs: [UnlimitedSizeCache]
+configs: [UnlimitedSizeCache, Parse]
 ---
 
 {{< code language="go" title="Example" >}}

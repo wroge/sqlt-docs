@@ -6,7 +6,7 @@ description: >
 drivers: [mattn/go-sqlite3]
 scanners: [ScanInt, ScanString]
 executors: [First]
-configs: []
+configs: [Parse]
 ---
 
 {{% pageinfo %}}

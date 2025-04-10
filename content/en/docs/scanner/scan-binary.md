@@ -6,7 +6,7 @@ description: >
 drivers: []
 scanners: [Scan, ScanBinary]
 executors: [First]
-configs: []
+configs: [Parse]
 weight: 7
 ---
 

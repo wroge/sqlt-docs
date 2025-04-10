@@ -6,7 +6,7 @@ description: >
 drivers: []
 scanners: [Scan, ScanInt]
 executors: [First]
-configs: []
+configs: [Parse]
 weight: 2
 ---
 

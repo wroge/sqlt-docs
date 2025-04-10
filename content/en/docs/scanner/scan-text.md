@@ -7,7 +7,7 @@ weight: 8
 drivers: []
 scanners: [ScanInt, ScanText]
 executors: [First]
-configs: []
+configs: [Parse]
 ---
 
 {{% pageinfo %}}
