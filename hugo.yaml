@@ -1,6 +1,15 @@
 baseURL: "https://wroge.github.io/sqlt-docs/"
 title: "{{ sqlt }}"
 
+menu:
+  main:
+    - name: GitHub
+      weight: 50
+      url: "https://github.com/wroge/sqlt/"
+
+staticDir:
+  - static
+
 # cSpell:ignore goldmark github hugo readingtime docsy subdir lastmod pygments linenos catmullrom norsk gu
 
 # Language settings
