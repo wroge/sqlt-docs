@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"time"
 
 	"github.com/Masterminds/sprig/v3"
@@ -73,7 +74,7 @@ func (r Repository) Create(ctx context.Context, params Params) (int64, error) {
 
 	id, ok := ctx.Value(sqlt.ContextKey("insert_book")).(int64)
 	if !ok {
-		return 0, err
+		return 0, errors.New("internal error")
 	}
 
 	return id, nil
@@ -87,7 +88,7 @@ func (r Repository) CreateMany(ctx context.Context, params []Params) ([]int64, e
 
 	ids, ok := ctx.Value(sqlt.ContextKey("insert_books")).([]int64)
 	if !ok {
-		return nil, err
+		return nil, errors.New("internal error")
 	}
 
 	return ids, nil

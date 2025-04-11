@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"fmt"
 	"time"
 
@@ -81,7 +82,7 @@ func (r Repository) Create(ctx context.Context, params Insert) (int64, error) {
 
 	id, ok := ctx.Value(sqlt.ContextKey("insert_book")).(int64)
 	if !ok {
-		return 0, err
+		return 0, errors.New("internal error")
 	}
 
 	return id, nil
