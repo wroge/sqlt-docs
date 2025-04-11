@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	bulk_insert "github.com/wroge/sqlt-docs/tour/bulk_insert"
+	complex_query "github.com/wroge/sqlt-docs/tour/complex_query"
 	create_statements "github.com/wroge/sqlt-docs/tour/create_statements"
 	load_from_file "github.com/wroge/sqlt-docs/tour/load_from_file"
 	transactions "github.com/wroge/sqlt-docs/tour/transactions"
@@ -15,6 +16,53 @@ func main() {
 	load_from_file_example()
 	bulk_insert_example()
 	transactions_example()
+	complex_query_example()
+}
+
+func complex_query_example() {
+	r, err := complex_query.NewRepository()
+	if err != nil {
+		panic(err)
+	}
+
+	ctx := context.Background()
+
+	_, err = r.Create(ctx, complex_query.Insert{
+		Title:   "Moby-Dick",
+		Authors: []string{"Herman Melville"},
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = r.Create(ctx, complex_query.Insert{
+		Title:   "Good Omens",
+		Authors: []string{"Neil Gaiman", "Terry Pratchett"},
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = r.Create(ctx, complex_query.Insert{
+		Title:   "Discworld",
+		Authors: []string{"Terry Pratchett"},
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	for range 2 {
+		books, err := r.Query(ctx, complex_query.Query{
+			Author: "Terry Pratchett",
+		})
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println(books)
+	}
+
+	fmt.Println("complex_query_example ✅")
 }
 
 func transactions_example() {

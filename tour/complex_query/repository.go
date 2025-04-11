@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"database/sql"
+	"fmt"
 	"time"
 
 	"github.com/Masterminds/sprig/v3"
@@ -13,36 +14,43 @@ import (
 type Book struct {
 	ID      int64
 	Title   string
-	Author  string
+	Authors []string
 	AddedAt time.Time
 }
 
-type Params struct {
-	Title  string
-	Author string
+type Query struct {
+	Title       string
+	Author      string
+	AddedBefore time.Time
+}
+
+type Insert struct {
+	Title   string
+	Authors []string
 }
 
 var (
 	config = sqlt.Config{
 		Templates: []sqlt.Template{
 			sqlt.Funcs(sprig.TxtFuncMap()),
-			sqlt.ParseFiles("transactions/queries.sql"),
+			sqlt.ParseFiles("complex_query/queries.sql"),
+		},
+		Log: func(ctx context.Context, info sqlt.Info) {
+			if info.Cached {
+				fmt.Println(info.SQL, info.Args)
+			}
 		},
 	}
 
 	schema = sqlt.Exec[any](config, sqlt.Lookup("schema"))
 
 	create = sqlt.Transaction(nil,
-		sqlt.One[Params, int64](config, sqlt.Lookup("upsert_author")),
-		sqlt.One[Params, int64](config, sqlt.Lookup("insert_book")),
+		sqlt.All[Insert, int64](config, sqlt.Lookup("upsert_authors")),
+		sqlt.One[Insert, int64](config, sqlt.Lookup("insert_book")),
+		sqlt.Exec[Insert](config, sqlt.Lookup("link_book_authors")),
 	)
 
-	createMany = sqlt.Transaction(nil,
-		sqlt.All[[]Params, int64](config, sqlt.Lookup("upsert_authors")),
-		sqlt.All[[]Params, int64](config, sqlt.Lookup("insert_books")),
-	)
-
-	get = sqlt.First[int64, Book](config, sqlt.Lookup("get_book"))
+	query = sqlt.All[Query, Book](config, sqlt.NoExpirationCache(512), sqlt.Lookup("query_books"))
 )
 
 func NewRepository() (Repository, error) {
@@ -65,7 +73,7 @@ type Repository struct {
 	DB *sql.DB
 }
 
-func (r Repository) Create(ctx context.Context, params Params) (int64, error) {
+func (r Repository) Create(ctx context.Context, params Insert) (int64, error) {
 	ctx, err := create.Exec(ctx, r.DB, params)
 	if err != nil {
 		return 0, err
@@ -79,20 +87,6 @@ func (r Repository) Create(ctx context.Context, params Params) (int64, error) {
 	return id, nil
 }
 
-func (r Repository) CreateMany(ctx context.Context, params []Params) ([]int64, error) {
-	ctx, err := createMany.Exec(ctx, r.DB, params)
-	if err != nil {
-		return nil, err
-	}
-
-	ids, ok := ctx.Value(sqlt.ContextKey("insert_books")).([]int64)
-	if !ok {
-		return nil, err
-	}
-
-	return ids, nil
-}
-
-func (r Repository) Get(ctx context.Context, id int64) (Book, error) {
-	return get.Exec(ctx, r.DB, id)
+func (r Repository) Query(ctx context.Context, params Query) ([]Book, error) {
+	return query.Exec(ctx, r.DB, params)
 }

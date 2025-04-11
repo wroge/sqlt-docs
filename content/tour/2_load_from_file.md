@@ -6,7 +6,7 @@ weight: 2
 drivers: [modernc.org/sqlite]
 scanners: [ScanInt, ScanString]
 executors: [Exec, First]
-configs: [ParseFiles]
+configs: [ParseFiles, Lookup]
 ---
 
 

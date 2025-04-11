@@ -5,8 +5,8 @@ description: >
 weight: 4
 drivers: [modernc.org/sqlite]
 scanners: [Scan]
-executors: [Exec, First, Transaction]
-configs: [ParseFiles, Masterminds/sprig]
+executors: [Exec, First, One, All, Transaction]
+configs: [ParseFiles, Lookup, Masterminds/sprig]
 ---
 
 
