@@ -7,7 +7,7 @@ cascade:
 - type: docs
 ---
 
-### NsPerOp
+## NsPerOp
 
 ![](/sqlt-docs/charts/Query_NsPerOp_Complex.png)
 ![](/sqlt-docs/charts/Query_NsPerOp_110.png)

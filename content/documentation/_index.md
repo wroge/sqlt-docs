@@ -1,7 +1,8 @@
 ---
-title: Docs
-linkTitle: Docs
-type: docs
+title: Documentation
+linkTitle: Documentation
+cascade:
+- type: docs
 ---
 
 Do you like SQL?  

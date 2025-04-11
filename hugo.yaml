@@ -6,8 +6,8 @@ menu:
     - name: Tour
       pageRef: tour
       weight: 1
-    - name: Docs
-      pageRef: docs
+    - name: Documentation
+      pageRef: documentation
       weight: 2
     - name: Benchmarks
       pageRef: benchmarks
