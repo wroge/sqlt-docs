@@ -1,5 +1,5 @@
 ---
-title: 2. Load from File
+title: 2. Load from file
 description: >
   Learn how to load SQL from a file and execute type-safe statements using sqlt.
 weight: 2
@@ -14,3 +14,4 @@ configs: [ParseFiles, Lookup]
 
 {{< code language="go" source="tour/load_from_file/repository.go" >}}{{< /code >}}
 
+<div style="padding-top: 2em; text-align: right"><a href="/sqlt-docs/tour/3_bulk_insert/">>> 3. Bulk insert</a></div>
