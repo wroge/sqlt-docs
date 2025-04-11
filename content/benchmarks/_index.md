@@ -3,9 +3,6 @@ title: Benchmarks
 linkTitle: Benchmarks
 description: >
   Results of the [Bench-Flix](https://github.com/wroge/bench-flix) benchmarks.
-menu:
-    main:
-        weight: 5
 cascade:
 - type: docs
 ---

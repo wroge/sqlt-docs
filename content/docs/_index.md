@@ -1,10 +1,7 @@
 ---
-title: Documentation
-linkTitle: Documentation
+title: Docs
+linkTitle: Docs
 type: docs
-menu:
-  main:
-    weight: 2
 ---
 
 Do you like SQL?  
