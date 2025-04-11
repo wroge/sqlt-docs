@@ -12,9 +12,12 @@ menu:
     - name: Benchmarks
       pageRef: benchmarks
       weight: 3
-    - name: GitHub
+    - name: GoDoc
       weight: 4
-      url: "https://github.com/wroge/sqlt/"
+      url: https://pkg.go.dev/github.com/wroge/sqlt
+    - name: GitHub
+      weight: 5
+      url: https://github.com/wroge/sqlt/
 
 taxonomies:
   driver: drivers
@@ -38,6 +41,8 @@ markup:
     noClasses: false
 
 params:
+  icons:
+    - "fab fa-golang"
   github_project_repo: https://github.com/wroge/sqlt
   github_branch: main
 
